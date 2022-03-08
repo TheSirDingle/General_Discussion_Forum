@@ -1,0 +1,22 @@
+
+
+nav#sidebar {
+    height: 100%;
+    width: 100%;
+    background-color: #111;
+    color: white;
+    position: fixed;
+    overflow-x: hidden;
+    padding-top: 20px;
+    transition: 0.7s
+}
+
+.hidden {
+    display: none;
+    transition: 0.7s
+}
+
+div#content {
+    transition: 0.7s
+}
+

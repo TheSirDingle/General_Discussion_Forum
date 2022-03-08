@@ -1,0 +1,21 @@
+{% extends "CompWebs/base.html" %}
+
+{% block content %}
+
+
+        {% for post in posts %}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="column">
+                            <img class="rounded-circle article-img" style="width: 75px; height;75px" src="{{ post.author.profile.image.url }}" alt="man can't stop me">
+                            <h4 class="article-title">{{ post.author }}</h4>
+                        </div>
+                        <div class="column">
+                            <p class="article-content">{{ post.Post_Content }}</p>
+                        </div>
+                    </div>
+                </article>
+        {% endfor %}
+
+
+{% endblock content %}

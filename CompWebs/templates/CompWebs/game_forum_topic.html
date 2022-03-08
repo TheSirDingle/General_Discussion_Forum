@@ -1,0 +1,18 @@
+{% extends "CompWebs/base.html" %}
+
+{% block content %}
+
+    {% for topic in topics %}
+        <article>
+            <div class="row">
+                <img src="{{ topic.author.profile.image.url }}" alt="stuff" class="rounded-circle article-img" style="width: 75px; height;75px">
+                <h4><a class="article-title" href="{% url 'Topic-Post' topic.T_Title %}">{{ topic.T_Title }}</a></h4>
+            </div>
+            <div class="media-body">
+                <a href="#">Created By: {{ topic.author }}</a>
+                <small class="text-muted">{{ topic.Tdate_Created }}</small>
+            </div>
+        </article>
+    {% endfor %}
+
+{% endblock %}

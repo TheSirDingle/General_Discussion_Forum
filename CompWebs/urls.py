@@ -18,6 +18,7 @@ from django.urls import path, include
 from . import views
 from Users import views as user_views
 from django.contrib.auth import views as auth_views
+from .views import GamingCreateTopic
 
 
 from django.conf import settings
@@ -37,7 +38,8 @@ urlpatterns = [
     path('about/', views.about, name="about"),
     path('GamingDiscussion/', views.GameForum, name="GameForum"),
     path('utils/', include(other_patterns)),
-    path('Post_Top/<str:topic_title>/', views.Post_Top, name='Topic-Post')
+    path('Post_Top/<str:topic_title>/<int:topic_id>', views.Post_Top, name='Topic-Post'),
+    path('topic/new/', GamingCreateTopic.as_view(), name='topic-create'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

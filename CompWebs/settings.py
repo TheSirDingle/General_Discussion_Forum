@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'CompWebs.apps.CompwebsConfig',
     'Users.apps.UserConfig',
     'crispy_forms',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

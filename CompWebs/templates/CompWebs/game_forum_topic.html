@@ -2,11 +2,34 @@
 
 {% block content %}
 
+    <div class="row">
+        {% if topics.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ topics.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in topics.paginator.page_range %}
+            <!--checks if current page-->
+            {% if topics.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            <!-- if page number is within 3 of the current page then add those numbers to the list -->
+            {% elif num > topics.number|add:'-3' and num < topics.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if topics.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{  topics.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ topics.paginator.num_pages }}">Last</a>
+        {% endif %}
+    </div>
+
+
     {% for topic in topics %}
         <article>
             <div class="row">
-                <img src="{{ topic.author.profile.image.url }}" alt="stuff" class="rounded-circle article-img" style="width: 75px; height;75px">
-                <h4><a class="article-title" href="{% url 'Topic-Post' topic.T_Title %}">{{ topic.T_Title }}</a></h4>
+                <img src="{{ topic.author.profile.image.url }}" alt="stuff" class="rounded-circle article-img" style="width: 50px; height:50px">
+                <h4><a class="article-title" href="{% url 'Topic-Post' topic.T_Title topic.id%}">{{ topic.T_Title }}</a></h4>
             </div>
             <div class="media-body">
                 <a href="#">Created By: {{ topic.author }}</a>
@@ -14,5 +37,30 @@
             </div>
         </article>
     {% endfor %}
+
+    <div class="row">
+        <a class="nav-item nav-link" href="{% url 'topic-create' %}">New Post</a>
+    </div>
+    <div class="row">
+        {% if topics.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ topics.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in topics.paginator.page_range %}
+            <!--checks if current page-->
+            {% if topics.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            <!-- if page number is within 3 of the current page then add those numbers to the list -->
+            {% elif num > topics.number|add:'-3' and num < topics.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if topics.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{  topics.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ topics.paginator.num_pages }}">Last</a>
+        {% endif %}
+    </div>
 
 {% endblock %}

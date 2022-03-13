@@ -1,7 +1,10 @@
+
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.urls import reverse
+from ckeditor.fields import RichTextField
+
+
 
 
 # to make the migration do "python manage.py makemigrations CompWebs" (basically python manage.py makemigrations <homefolder>)
@@ -18,11 +21,16 @@ class GamingTopic(models.Model):
     def __str__(self):
         return self.T_Title
 
+
 class GamingPost(models.Model):
     Post_Topic = models.ForeignKey(GamingTopic, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
-    Pdate_Created = models.DateTimeField(default=timezone.now)
-    Post_Content = models.CharField(max_length=99999 ,default="stuffman")
+    Pdate_Created = models.DateTimeField()
+    # Post_Content = models.CharField(max_length=99999 ,default="stuffman")
+    Post_Content = RichTextField(blank=True, null=True)
+
+
+
 
 
 
